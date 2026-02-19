@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
-import { ArrowUpRight, Phone, Mail } from "lucide-react"
+import { useState } from "react"
+import { ArrowUpRight, Phone, Mail, CheckCircle } from "lucide-react"
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -10,19 +10,44 @@ export function Contact() {
     email: "",
     message: "",
   })
-  const formRef = useRef<HTMLFormElement>(null)
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && formRef.current) {
-      const nextInput = formRef.current.querySelector<HTMLInputElement>('input[name="_next"]')
-      if (nextInput) {
-        nextInput.value = window.location.origin + window.location.pathname + window.location.search + "#contact"
-      }
-    }
-  }, [])
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const formDataToSend = new FormData()
+    formDataToSend.append("name", formData.name)
+    formDataToSend.append("phone", formData.phone)
+    formDataToSend.append("email", formData.email)
+    formDataToSend.append("message", formData.message)
+    formDataToSend.append("_captcha", "false")
+    formDataToSend.append("_subject", "Новая заявка с сайта ISABEL")
+    formDataToSend.append("_next", window.location.href)
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/nemytykh@icloud.com", {
+        method: "POST",
+        body: formDataToSend,
+      })
+
+      if (response.ok) {
+        setSubmitSuccess(true)
+        setFormData({ name: "", phone: "", email: "", message: "" })
+        setTimeout(() => setSubmitSuccess(false), 5000)
+      } else {
+        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.")
+      }
+    } catch (error) {
+      alert("Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -73,15 +98,20 @@ export function Contact() {
           </a>
         </div>
 
+        {submitSuccess && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6 flex items-center gap-3">
+            <CheckCircle className="text-green-600 shrink-0" size={24} />
+            <div>
+              <p className="text-green-900 font-medium">Спасибо за вашу заявку!</p>
+              <p className="text-green-700 text-sm">Мы свяжемся с вами в течение 24 часов.</p>
+            </div>
+          </div>
+        )}
+
         <form
-          ref={formRef}
-          action="https://formsubmit.co/nemytykh@icloud.com"
-          method="POST"
+          onSubmit={handleSubmit}
           className="bg-background border border-border p-6 md:p-10"
         >
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="" />
-          <input type="hidden" name="_subject" value="Новая заявка с сайта ISABEL" />
           
           <div className="flex flex-wrap gap-3 mb-8">
             <input
@@ -126,13 +156,16 @@ export function Contact() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="group flex items-center gap-3 bg-primary text-primary-foreground px-12 py-4 text-sm uppercase tracking-[0.2em] font-medium hover:bg-primary/90 transition-colors duration-300"
+              disabled={isSubmitting || submitSuccess}
+              className="group flex items-center gap-3 bg-primary text-primary-foreground px-12 py-4 text-sm uppercase tracking-[0.2em] font-medium hover:bg-primary/90 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Отправить
-              <ArrowUpRight
-                size={16}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              {isSubmitting ? "Отправка..." : submitSuccess ? "Отправлено" : "Отправить"}
+              {!isSubmitting && !submitSuccess && (
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              )}
             </button>
           </div>
         </form>

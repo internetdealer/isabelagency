@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 
 export function Footer() {
@@ -8,12 +7,11 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Image
+            <img
               src="/images/logo.svg"
               alt="ISABEL"
-              width={80}
-              height={40}
               className="h-8 w-auto mb-5"
+              style={{ maxWidth: '120px', height: 'auto' }}
             />
             <p className="text-sm text-background/60 leading-relaxed max-w-xs mb-5">
               ISABEL -- AI-агентство нового поколения. Создаём сайты, ролики и стратегии продаж с помощью AI.

@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   title: 'ISABEL — AI Agency',
   description: 'AI-агентство, которое помогает брендам с веб-сайтами, продажами, рекламными роликами и контентом.',
   icons: {
-    icon: '/favicon.png',
-    apple: '/favicon.png',
+    icon: '/images/favicon.png',
+    apple: '/images/favicon.png',
   },
 }
 

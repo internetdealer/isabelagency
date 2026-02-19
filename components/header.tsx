@@ -24,13 +24,12 @@ export function Header() {
           {logoError ? (
             <span className="text-xl font-black uppercase tracking-tight text-foreground">ISABEL</span>
           ) : (
-            <Image
+            <img
               src="/images/logo.svg"
               alt="ISABEL"
-              width={60}
-              height={30}
               className="h-8 w-auto"
               onError={() => setLogoError(true)}
+              style={{ maxWidth: '120px', height: 'auto' }}
             />
           )}
         </a>
@@ -66,17 +65,17 @@ export function Header() {
       {open && (
         <>
           <div
-            className="lg:hidden fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40"
+            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
-          <div className="lg:hidden fixed inset-x-4 top-[73px] bottom-4 z-50 bg-background border border-border rounded-lg shadow-xl flex flex-col items-center justify-center gap-6 px-6 py-10 overflow-y-auto">
+          <div className="lg:hidden fixed left-0 right-0 top-[65px] bottom-0 z-50 bg-background border-t border-border shadow-2xl flex flex-col gap-0 px-6 py-8 overflow-y-auto">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-xl font-medium uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors w-full text-center py-3 border-b border-border last:border-0"
+                className="text-lg font-medium uppercase tracking-[0.15em] text-foreground hover:text-primary transition-colors w-full text-left py-4 border-b border-border/50"
               >
                 {link.label}
               </a>
@@ -84,7 +83,7 @@ export function Header() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="w-full text-center bg-primary text-primary-foreground px-8 py-4 text-sm uppercase tracking-[0.2em] font-medium mt-2 rounded"
+              className="w-full text-center bg-primary text-primary-foreground px-8 py-4 text-sm uppercase tracking-[0.2em] font-medium mt-4 rounded-lg"
             >
               Начать проект
             </a>
