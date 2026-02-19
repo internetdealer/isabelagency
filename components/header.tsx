@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
@@ -16,6 +16,18 @@ const navLinks = [
 export function Header() {
   const [open, setOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -64,11 +76,27 @@ export function Header() {
 
       {/* Mobile Navigation Overlay - Fullscreen */}
       {open && (
-        <div className="lg:hidden fixed inset-0 z-[100] bg-background">
+        <div 
+          className="lg:hidden fixed overflow-hidden"
+          style={{ 
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 9999,
+            margin: 0,
+            padding: 0,
+            backgroundColor: '#ffffff',
+            background: '#ffffff'
+          }}
+        >
           {/* Mobile Menu Panel */}
-          <div className="h-full w-full flex flex-col">
+          <div className="h-full w-full flex flex-col" style={{ backgroundColor: '#ffffff' }}>
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border flex-shrink-0" style={{ backgroundColor: '#ffffff' }}>
               <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-medium">
                 Меню
               </span>
@@ -82,7 +110,7 @@ export function Header() {
             </div>
             
             {/* Navigation Links */}
-            <nav className="flex-1 overflow-y-auto py-8">
+            <nav className="flex-1 overflow-y-auto py-8" style={{ backgroundColor: '#ffffff' }}>
               <div className="flex flex-col">
                 {navLinks.map((link) => (
                   <a
@@ -98,7 +126,7 @@ export function Header() {
             </nav>
             
             {/* CTA Button */}
-            <div className="p-6 border-t border-border">
+            <div className="p-6 border-t border-border" style={{ backgroundColor: '#ffffff' }}>
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
