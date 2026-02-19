@@ -62,33 +62,60 @@ export function Header() {
         </button>
       </div>
 
+      {/* Mobile Navigation Overlay */}
       {open && (
-        <>
+        <div className="lg:hidden fixed inset-0 z-[100]">
+          {/* Backdrop */}
           <div
-            className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-in fade-in-0"
             onClick={() => setOpen(false)}
             aria-hidden="true"
           />
-          <div className="lg:hidden fixed left-0 right-0 top-[65px] bottom-0 z-50 bg-background border-t border-border shadow-2xl flex flex-col gap-0 px-6 py-8 overflow-y-auto">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+          
+          {/* Mobile Menu Panel */}
+          <div className="absolute top-0 right-0 bottom-0 w-full max-w-sm bg-background shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-background">
+              <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-medium">
+                Меню
+              </span>
+              <button
                 onClick={() => setOpen(false)}
-                className="text-lg font-medium uppercase tracking-[0.15em] text-foreground hover:text-primary transition-colors w-full text-left py-4 border-b border-border/50"
+                className="p-2 hover:bg-secondary rounded transition-colors"
+                aria-label="Close menu"
               >
-                {link.label}
+                <X size={20} className="text-foreground" />
+              </button>
+            </div>
+            
+            {/* Navigation Links */}
+            <nav className="flex-1 overflow-y-auto py-6 bg-background">
+              <div className="flex flex-col">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="px-6 py-4 text-base font-medium uppercase tracking-[0.1em] text-foreground hover:bg-secondary hover:text-primary transition-all duration-200 border-b border-border/30 last:border-0 active:bg-secondary/50"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+            
+            {/* CTA Button */}
+            <div className="p-6 border-t border-border bg-background">
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="block w-full text-center bg-primary text-primary-foreground px-6 py-3.5 text-sm uppercase tracking-[0.2em] font-medium rounded-lg hover:bg-primary/90 transition-colors active:bg-primary/80"
+              >
+                Начать проект
               </a>
-            ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="w-full text-center bg-primary text-primary-foreground px-8 py-4 text-sm uppercase tracking-[0.2em] font-medium mt-4 rounded-lg"
-            >
-              Начать проект
-            </a>
+            </div>
           </div>
-        </>
+        </div>
       )}
     </header>
   )
