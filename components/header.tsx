@@ -58,13 +58,13 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden fixed inset-0 top-[65px] bg-background z-40 flex flex-col items-center justify-center gap-8">
+        <div className="lg:hidden fixed inset-0 top-[65px] bg-background z-40 flex flex-col items-center justify-center gap-8 px-6 py-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-2xl uppercase tracking-[0.3em] text-foreground hover:text-primary transition-colors"
+              className="text-2xl uppercase tracking-[0.3em] text-foreground hover:text-primary transition-colors w-full text-center py-2"
             >
               {link.label}
             </a>

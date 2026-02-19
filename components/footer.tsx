@@ -104,13 +104,13 @@ export function Footer() {
               <div>
                 <span className="text-xs uppercase tracking-[0.15em] text-background/40 block mb-1">Режим работы</span>
                 <span className="text-sm text-background/60">
-                  Пн — Пт, 10:00 — 19:00
+                  10:00 — 22:00
                 </span>
               </div>
               <div>
                 <span className="text-xs uppercase tracking-[0.15em] text-background/40 block mb-1">Локация</span>
                 <span className="text-sm text-background/60">
-                  Россия, удалённо по всему миру
+                  Москва
                 </span>
               </div>
             </div>

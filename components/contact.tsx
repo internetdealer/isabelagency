@@ -64,38 +64,51 @@ export function Contact() {
         </div>
 
         <form
-          onSubmit={(e) => e.preventDefault()}
+          action="https://formsubmit.co/nemytykh@icloud.com"
+          method="POST"
           className="bg-background border border-border p-6 md:p-10"
         >
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="" />
+          <input type="hidden" name="_subject" value="Новая заявка с сайта ISABEL" />
+          
           <div className="flex flex-wrap gap-3 mb-8">
             <input
               type="text"
+              name="name"
               value={formData.name}
               onChange={(e) => handleChange("name", e.target.value)}
               placeholder="Ваше имя"
+              required
               className="bg-secondary border border-border rounded-full px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors w-full sm:w-auto sm:flex-1 min-w-[180px]"
             />
             <input
               type="tel"
+              name="phone"
               value={formData.phone}
               onChange={(e) => handleChange("phone", e.target.value)}
               placeholder="+7 (___) ___-__-__"
+              required
               className="bg-secondary border border-border rounded-full px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors w-full sm:w-auto sm:flex-1 min-w-[180px]"
             />
             <input
               type="email"
+              name="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
               placeholder="email@example.com"
+              required
               className="bg-secondary border border-border rounded-full px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors w-full sm:w-auto sm:flex-1 min-w-[180px]"
             />
           </div>
 
           <textarea
+            name="message"
             rows={4}
             value={formData.message}
             onChange={(e) => handleChange("message", e.target.value)}
             placeholder="Расскажите о вашем проекте..."
+            required
             className="w-full bg-secondary border border-border rounded-2xl px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors resize-none mb-8"
           />
 
