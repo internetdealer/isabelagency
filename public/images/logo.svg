@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="351.88617mm"
+   height="174.87825mm"
+   viewBox="0 0 351.88617 174.87825"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-0.39177398,-0.36830806)">
+    <rect
+       style="fill:#800000;stroke:none;stroke-width:5.58199;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill markers stroke"
+       id="rect1"
+       width="351.88617"
+       height="174.87825"
+       x="0.39177397"
+       y="0.36830807" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:176.389px;line-height:0;font-family:AppleMyungjo;-inkscape-font-specification:'AppleMyungjo, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:-11.9883px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#ffffff;stroke:none;stroke-width:5.1;stroke-linecap:square;stroke-linejoin:bevel;paint-order:fill markers stroke"
+       x="-3.0490077"
+       y="151.34703"
+       id="text1"><tspan
+         id="tspan1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:176.389px;line-height:0;font-family:AppleMyungjo;-inkscape-font-specification:'AppleMyungjo, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:-11.9883px;fill:#ffffff;stroke:none;stroke-width:5.1"
+         x="-3.0490077"
+         y="151.34703"
+         dx="0">ISA</tspan></text>
+  </g>
+</svg>

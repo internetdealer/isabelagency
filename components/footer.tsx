@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.svg"
               alt="ISABEL"
               width={80}
               height={40}

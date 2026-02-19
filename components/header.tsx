@@ -15,18 +15,24 @@ const navLinks = [
 
 export function Header() {
   const [open, setOpen] = useState(false)
+  const [logoError, setLogoError] = useState(false)
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="flex items-center justify-between px-6 py-4 md:px-12">
         <a href="#" className="flex items-center gap-3">
-          <Image
-            src="/images/logo.png"
-            alt="ISABEL"
-            width={60}
-            height={30}
-            className="h-8 w-auto"
-          />
+          {logoError ? (
+            <span className="text-xl font-black uppercase tracking-tight text-foreground">ISABEL</span>
+          ) : (
+            <Image
+              src="/images/logo.svg"
+              alt="ISABEL"
+              width={60}
+              height={30}
+              className="h-8 w-auto"
+              onError={() => setLogoError(true)}
+            />
+          )}
         </a>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -58,25 +64,32 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden fixed inset-0 top-[65px] bg-background z-40 flex flex-col items-center justify-center gap-8 px-6 py-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="text-2xl uppercase tracking-[0.3em] text-foreground hover:text-primary transition-colors w-full text-center py-2"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href="#contact"
+        <>
+          <div
+            className="lg:hidden fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40"
             onClick={() => setOpen(false)}
-            className="bg-primary text-primary-foreground px-8 py-3 text-sm uppercase tracking-[0.2em] font-medium mt-4"
-          >
-            Начать проект
-          </a>
-        </div>
+            aria-hidden="true"
+          />
+          <div className="lg:hidden fixed inset-x-4 top-[73px] bottom-4 z-50 bg-background border border-border rounded-lg shadow-xl flex flex-col items-center justify-center gap-6 px-6 py-10 overflow-y-auto">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-xl font-medium uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors w-full text-center py-3 border-b border-border last:border-0"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="w-full text-center bg-primary text-primary-foreground px-8 py-4 text-sm uppercase tracking-[0.2em] font-medium mt-2 rounded"
+            >
+              Начать проект
+            </a>
+          </div>
+        </>
       )}
     </header>
   )

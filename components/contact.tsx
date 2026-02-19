@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ArrowUpRight, Phone, Mail } from "lucide-react"
 
 export function Contact() {
@@ -10,6 +10,16 @@ export function Contact() {
     email: "",
     message: "",
   })
+  const formRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && formRef.current) {
+      const nextInput = formRef.current.querySelector<HTMLInputElement>('input[name="_next"]')
+      if (nextInput) {
+        nextInput.value = window.location.origin + window.location.pathname + window.location.search + "#contact"
+      }
+    }
+  }, [])
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -64,6 +74,7 @@ export function Contact() {
         </div>
 
         <form
+          ref={formRef}
           action="https://formsubmit.co/nemytykh@icloud.com"
           method="POST"
           className="bg-background border border-border p-6 md:p-10"
