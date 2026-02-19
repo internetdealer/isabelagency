@@ -64,16 +64,12 @@ export function Contact() {
         </div>
 
         <form
-          action="https://formsubmit.co/nemytykh@icloud.com"
-          method="POST"
+          onSubmit={(e) => e.preventDefault()}
           className="bg-background border border-border p-6 md:p-10"
         >
-          <input type="hidden" name="_subject" value="Новая заявка с сайта ISABEL" />
-          <input type="hidden" name="_captcha" value="false" />
           <div className="flex flex-wrap gap-3 mb-8">
             <input
               type="text"
-              name="name"
               value={formData.name}
               onChange={(e) => handleChange("name", e.target.value)}
               placeholder="Ваше имя"
@@ -81,7 +77,6 @@ export function Contact() {
             />
             <input
               type="tel"
-              name="phone"
               value={formData.phone}
               onChange={(e) => handleChange("phone", e.target.value)}
               placeholder="+7 (___) ___-__-__"
@@ -89,7 +84,6 @@ export function Contact() {
             />
             <input
               type="email"
-              name="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
               placeholder="email@example.com"
@@ -99,7 +93,6 @@ export function Contact() {
 
           <textarea
             rows={4}
-            name="message"
             value={formData.message}
             onChange={(e) => handleChange("message", e.target.value)}
             placeholder="Расскажите о вашем проекте..."
